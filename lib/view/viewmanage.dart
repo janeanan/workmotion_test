@@ -35,13 +35,42 @@ class _ViewManageState extends State<ViewManage> {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: Text('Employee Management'), centerTitle: true),
-      body: ListView.builder(
-        shrinkWrap: true,
-        itemCount: listBTN.length,
-        itemBuilder: (context, index) {
-          return listBTN[index];
-        },
+      extendBodyBehindAppBar: true,
+      backgroundColor: const Color(0xFF0F2027),
+      appBar: AppBar(
+        title: const Text('Employee Management'),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.white,
+        elevation: 0,
+      ),
+      body: Stack(
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Color(0xFF2C5364),
+                  Color(0xFF203A43),
+                  Color(0xFF0F172A),
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+            ),
+          ),
+          ListView.builder(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 100),
+            shrinkWrap: true,
+            itemCount: listBTN.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: listBTN[index],
+              );
+            },
+          ),
+        ],
       ),
     );
   }
