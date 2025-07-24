@@ -113,7 +113,32 @@ class _EmployeeViewState extends State<EmployeeView> {
                                   color: Colors.red,
                                 ),
                                 onPressed: () {
-                                  vm.removeEmployeeById(employee.id!);
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      title: const Text('Confirm Deletion'),
+                                      content: const Text(
+                                        'Are you sure you want to delete this employee?',
+                                      ),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.of(context).pop(),
+                                          child: const Text('Cancel'),
+                                        ),
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                            vm.removeEmployeeById(employee.id!);
+                                          },
+                                          child: const Text(
+                                            'Delete',
+                                            style: TextStyle(color: Colors.red),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
                                 },
                               ),
                             ],
